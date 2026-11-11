@@ -73,3 +73,17 @@ def get_device(name: str):
         detail="No device called " + name
     )
 
+@app.get("/stats")
+def get_stats():
+   
+    total_temp = 0
+
+    for device in readings:
+        total_temp += device["temp"]
+
+    average_temp = total_temp / len(readings)
+
+    return {
+        "average_temperature": average_temp
+    }
+
