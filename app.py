@@ -92,3 +92,10 @@ async def create_device(device: dict):
     device_dict = device.model_dump() #convert the device model to a dictionary 
     readings.append(device)    
     return device
+
+@app.get("/devices/room/{room}/devices")
+async def get_devices_by_room(room: str):
+    devices_in_room = [device for device in readings if device['room'] == room]
+    if not devices_in_room:
+        raise HTTPException(status_code=404, detail="No devices found in this room")
+    return devices_in_room
