@@ -60,4 +60,16 @@ def get_online():
             online_devices.append(device)
     return online_devices
 
+@app.get("/devices/{name}")
+def get_device(name: str):
+    print("Task 4: Searching for device:", name)
+
+    for device in readings:
+        if device["name"] == name:
+            return device
+
+    raise HTTPException(
+        status_code=404,
+        detail="No device called " + name
+    )
 
