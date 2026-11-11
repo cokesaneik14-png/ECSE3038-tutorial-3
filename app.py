@@ -41,3 +41,7 @@ def hottest(devices):
             hottest_device = device
 
     return hottest_device
+
+@app.get("/devices")
+async def get_devices_by_():
+    return readings
