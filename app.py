@@ -87,3 +87,8 @@ def get_stats():
         "average_temperature": average_temp
     }
 
+@app.post("/devices", status_code=201)
+async def create_device(device: dict): 
+    device_dict = device.model_dump() #convert the device model to a dictionary 
+    readings.append(device)    
+    return device
